@@ -1,0 +1,35 @@
+# --- 1. Python 编译文件 (常见) ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- 2. 打包分发文件 (你特别要求的) ---
+# 存放构建好的 .whl 和 .tar.gz
+dist/
+# 存放构建过程中的临时文件
+build/
+# 存放包元数据
+*.egg-info/
+uestc_login.egg-info/
+
+# --- 3. 项目敏感数据 (一定要加！) ---
+# 你的代码生成的 cookie 文件，包含登录凭证，绝对不能上传！
+cookies/
+*_cookies.json
+
+# --- 4. 虚拟环境 (常见) ---
+# 避免把几百兆的库文件传上去
+venv/
+.venv/
+env/
+ENV/
+
+# --- 5. IDE 和编辑器配置 (常见) ---
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- 6. 系统文件 ---
+.DS_Store
+Thumbs.db

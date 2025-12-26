@@ -18,6 +18,10 @@ class UestcUser:
         :param username: 用户名 (学号)
         :param password: 原始密码
         """
+        directory = os.path.dirname(self.cookie_file)
+        if directory and not os.path.exists(directory):
+            os.makedirs(directory, exist_ok=True)
+
         self.username = username
         self.password = password
         self.cookie_dir = cookie_dir
