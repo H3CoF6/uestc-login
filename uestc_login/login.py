@@ -18,15 +18,17 @@ class UestcUser:
         :param username: 用户名 (学号)
         :param password: 原始密码
         """
+
+
+        self.username = username
+        self.password = password
+        self.cookie_file = cookie_dir
+
         directory = os.path.dirname(self.cookie_file)
         if directory and not os.path.exists(directory):
             os.makedirs(directory, exist_ok=True)
 
-        self.username = username
-        self.password = password
-        self.cookie_dir = cookie_dir
 
-        self.cookie_file = os.path.join(self.cookie_dir, f'{self.username}_cookies.json')
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": get_random_user_agent()})
         self.is_logged_in = False
@@ -132,13 +134,15 @@ class UestcUser:
         return self.session
 
     def login_chat_perform(self):
-        self.login()
+        self.session = self.login()
 
         self.session.get("https://chat.uestc.edu.cn", allow_redirects=True)
         self.session.get("https://chat.uestc.edu.cn/terminator/agent/home", allow_redirects=True)
         self.session.get("https://chat.uestc.edu.cn/unifiedlogin/v1/loginmanage/login/direction?redirect_url=/terminator/agent/home", allow_redirects=True)
         self.session.get("https://idas.uestc.edu.cn/authserver/login?service=https://chat.uestc.edu.cn/unifiedlogin/v1/cas/login?redirect_url=/terminator/agent/home", allow_redirects=True)
         self.session.get("https://chat.uestc.edu.cn/terminator/agent/home", allow_redirects=True)
+
+        return self.session
 
 
     def check_cookie(self):
