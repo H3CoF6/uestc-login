@@ -4,8 +4,8 @@ import json
 import os
 from bs4 import BeautifulSoup
 import random
-from utils import encrypt_password, get_random_user_agent
-from exceptions import NetworkError, ExtractionError, CredentialError, CookieError
+from .utils import encrypt_password, get_random_user_agent
+from .exceptions import NetworkError, ExtractionError, CredentialError, CookieError
 
 LOGIN_DIR = os.path.dirname(__file__)
 COOKIE_DIR = os.path.join(LOGIN_DIR, 'cookies')
