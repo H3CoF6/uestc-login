@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uestc-login"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
   { name="H3CoF6", email="h3cof6@gmail.com" },
 ]
