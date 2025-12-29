@@ -125,8 +125,14 @@ class UestcUser:
         print("本地 Cookie 无效或不存在，开始使用账号密码登录...")
         self._perform_login(login_url=login_url)
 
-        if not self._check_cookie_validity(check_url="https://webvpn.uestc.edu.cn/https/77726476706e69737468656265737421f9f3408f69256d436a0bc7a99c406d3652/personalInfo/common/getUserConf"):
-            raise CookieError("登录后，cookie验证失败！")
+        if "vpn" in login_url:
+
+            if not self._check_cookie_validity(check_url="https://webvpn.uestc.edu.cn/https/77726476706e69737468656265737421f9f3408f69256d436a0bc7a99c406d3652/personalInfo/common/getUserConf"):
+                raise CookieError("登录后，cookie验证失败！")
+
+        else:
+            if not self._check_cookie_validity():
+                raise CookieError("登录后，cookie验证失败！")
 
         self.is_logged_in = True
         self._save_cookies()
